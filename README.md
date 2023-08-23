@@ -12,6 +12,6 @@ This website is an online storage platform that allows users to upload, store, a
 
 ### Credentials
 
-The login credentials for a test account are:
-username: admin
+The login credentials for a test account are:<br>
+username: admin<br>
 password: admin
