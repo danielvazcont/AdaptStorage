@@ -1,0 +1,15 @@
+# --- Secretos y datos privados (NO subir a GitHub) ---
+# credenciales reales de la BD
+PHPDocumentos/config.php
+# script temporal de diagnostico
+PHPDocumentos/diagnostico.php
+# archivos subidos por usuarios
+PHPDocumentos/uploads/
+# dumps con emails/hashes de usuarios
+*.sql
+
+# --- Config local ---
+.env
+
+# --- Dependencias ---
+node_modules/

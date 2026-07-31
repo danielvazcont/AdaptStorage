@@ -18,7 +18,7 @@
     "web-vitals": "^1.1.2",
     "webpack": "^4.19.1"
   },
-  "homepage": "https://adaptstoragep.000webhostapp.com/",
+  "homepage": "https://adapt-storage.page.gd/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

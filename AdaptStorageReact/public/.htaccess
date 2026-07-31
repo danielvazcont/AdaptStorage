@@ -1,0 +1,11 @@
+# Enrutado SPA de React (BrowserRouter) sobre Apache / InfinityFree.
+# Las peticiones a archivos reales (login.php, subirArchivo.php, /static, /uploads...)
+# se sirven tal cual; cualquier otra ruta cae en index.html para que React enrute.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

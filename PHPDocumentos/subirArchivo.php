@@ -4,9 +4,9 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: PUT, GET, POST");
 $response = array();
 $upload_dir = 'uploads/';
-$server_url = 'http://localhost/AdaptStorage/';
+include "conectar.php"; // define config.php -> BASE_URL, credenciales DB
+$server_url = BASE_URL;
 include "vendor/autoload.php";
-include "conectar.php";
 include "docx2text.php";
 $conn = conectarDB();
 $conn->set_charset('utf8');
@@ -32,7 +32,8 @@ if($_FILES['documento'])
     {
         $upload_name = strtolower($archivo_name);
         $upload_name = preg_replace('/\s+/', '-', $upload_name);
-        $path = $server_url.$upload_dir.$upload_name;
+        $path = $server_url.$upload_dir.$upload_name;   // URL pública (se devuelve al frontend)
+        $ruta_local = $upload_dir.$upload_name;          // ruta en disco (para leer el contenido)
         $extension = pathinfo($path, PATHINFO_EXTENSION);
         $nombreArchivo = pathinfo($path, PATHINFO_FILENAME);
         $nombre_original = pathinfo(($server_url.$upload_dir.$archivo_name), PATHINFO_FILENAME);
@@ -48,14 +49,14 @@ if($_FILES['documento'])
 
             if($extension == 'txt'){
 
-                $contenido = file_get_contents($path);  
+                $contenido = file_get_contents($ruta_local);
 
             }else if($extension == 'pdf'){
                 
                 // Iniciamos la libreria
                 $parser = new \Smalot\PdfParser\Parser(); 
                 // Pasamos el archivo a la libreria
-                $pdf = $parser->parseFile($path); 
+                $pdf = $parser->parseFile($ruta_local);
                 // Extraemos el texto
                 $contenido = $pdf->getText();
                 // Damos un salto de linea cada que comience un nuevo string
